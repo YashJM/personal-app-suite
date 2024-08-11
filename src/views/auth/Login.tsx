@@ -1,5 +1,5 @@
 import { signInWithPopup, User } from 'firebase/auth';
-import { auth, provider } from '../firebase/firebaseConfig';
+import { auth, provider } from '../../firebase/firebaseConfig';
 import { Box, Button, Typography } from '@mui/material';
 
 interface IlogIn {
