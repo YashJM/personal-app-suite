@@ -7,7 +7,7 @@ interface IAppViewProps {
 
 const AppView = ({ appType }: IAppViewProps) => {
   return (
-    <Box sx={{ p: { xs: 0, md: 10 } }}>
+    <Box sx={{ p: { xs: 5, md: 10 } }}>
       {appType === 'workout' ? <Workout /> : ''}
     </Box>
   );

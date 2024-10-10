@@ -37,6 +37,7 @@ interface IExercise {
 }
 
 interface IDayWorkout {
+  id: string;
   day: string;
   exercises: IExercise[];
 }
@@ -44,6 +45,7 @@ interface IDayWorkout {
 // Initial data
 const initialWorkouts: IDayWorkout[] = [
   {
+    id: 'monday',
     day: 'Monday Day #1 (Chest and Back)',
     exercises: [
       {
@@ -61,6 +63,7 @@ const initialWorkouts: IDayWorkout[] = [
     ],
   },
   {
+    id: 'tuesday',
     day: 'Tuesday Day #2 (Shoulders and Arms)',
     exercises: [
       {
@@ -244,13 +247,34 @@ const Workout = () => {
     setWorkouts(newWorkouts);
   };
 
+  const handleDayTitleChange = (dayIndex: number, newTitle: string) => {
+    const newWorkouts = [...workouts];
+    newWorkouts[dayIndex].day = newTitle;
+    setWorkouts(newWorkouts);
+  };
+
+  const handleExerciseNameChange = (
+    dayIndex: number,
+    exerciseIndex: number,
+    newName: string
+  ) => {
+    const newWorkouts = [...workouts];
+    newWorkouts[dayIndex].exercises[exerciseIndex].name = newName;
+    setWorkouts(newWorkouts);
+  };
+
   return (
     <Box sx={{ padding: 2 }}>
       {workouts.map((workout, dayIndex) => (
         <Paper key={dayIndex} sx={{ marginBottom: 2, padding: 2 }}>
-          <Typography variant='h6' gutterBottom>
-            {workout.day}
-          </Typography>
+          <TextField
+            label='Day Title'
+            value={workout.day}
+            onChange={(e) => handleDayTitleChange(dayIndex, e.target.value)}
+            fullWidth
+            variant='outlined'
+            sx={{ marginBottom: 2 }}
+          />
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
